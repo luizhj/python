@@ -7,8 +7,10 @@ def move_file(source, destination):
         os.rename(source, destination)
 
 
-def path_join(path, join):
+def path_join(path, join, create=True):
     new_path = os.path.join(os.path.sep, path, join)
+    if create:
+        create_folder(new_path)
     return new_path
 
 
@@ -73,7 +75,7 @@ def file_analise(file, source):
     destination = path_join(destination, year)
     destination = path_join(destination, month)
 
-    absolute_destination = path_join(destination, file)
+    absolute_destination = path_join(destination, file, False)
 
     move_file(absolute_source, absolute_destination)
 
